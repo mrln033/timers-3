@@ -18,7 +18,7 @@ async function loadDashboard() {
 
   try {
 
-    const API_URL = "COLLE_TA_NOUVELLE_URL_ICI";
+    const API_URL = "https://script.google.com/macros/s/AKfycbyJxaN0GNy3ZB0J8KyWjGVdRoDuZVgX0EvXhBraB2FBRLcur9QfyTjSoR0GAg2Atii67Q/exec";
     const CACHE_KEY = "dashboard_cache_v1";
     const CACHE_DURATION = 60000; // 60 secondes
 
