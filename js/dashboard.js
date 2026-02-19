@@ -6,25 +6,51 @@ async function loadDashboard() {
 
   const container = document.getElementById("dashboard");
 
-  // 🔹 Message de chargement
+  // 🔹 Affichage LOADER garanti
   container.innerHTML = `
     <div class="loading-message">
       ⏳ Chargement en cours...
     </div>
   `;
 
+  // 🔹 Laisse le navigateur peindre le loader
+  await new Promise(resolve => setTimeout(resolve, 50));
+
   try {
 
-    // 🔁 👉 Mets ici ta NOUVELLE URL Apps Script
-    const API_URL = "https://script.google.com/macros/s/AKfycbyJxaN0GNy3ZB0J8KyWjGVdRoDuZVgX0EvXhBraB2FBRLcur9QfyTjSoR0GAg2Atii67Q/exec";
+    const API_URL = "COLLE_TA_NOUVELLE_URL_ICI";
+    const CACHE_KEY = "dashboard_cache_v1";
+    const CACHE_DURATION = 60000; // 60 secondes
 
-    const res = await fetch(API_URL);
-    const json = await res.json();
+    let json;
+
+    // 🔹 Vérifier cache
+    const cached = localStorage.getItem(CACHE_KEY);
+
+    if (cached) {
+
+      const parsed = JSON.parse(cached);
+
+      if (Date.now() - parsed.timestamp < CACHE_DURATION) {
+        json = parsed.data;
+      }
+    }
+
+    // 🔹 Si pas de cache valide → fetch
+    if (!json) {
+
+      const res = await fetch(API_URL);
+      json = await res.json();
+
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        timestamp: Date.now(),
+        data: json
+      }));
+    }
 
     const data = json.missions;
     const dashboardConfig = json.dashboard;
 
-    // Construire liste planètes depuis les missions
     const planets = Object.keys(data).map(p => {
 
       const config = dashboardConfig.find(d => d.planet === p);
@@ -36,12 +62,10 @@ async function loadDashboard() {
       };
     });
 
-    // 🔤 Tri alphabétique
     planets.sort((a, b) =>
       a.title.localeCompare(b.title, "fr", { sensitivity: "base" })
     );
 
-    // Nettoyage du loader
     container.innerHTML = "";
 
     planets.forEach(planet => {
