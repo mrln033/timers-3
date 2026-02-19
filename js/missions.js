@@ -44,12 +44,14 @@ if (pageTitle) {
 
 fetch(API_URL)
   .then(r => r.json())
-  .then(allData => {
+.then(allData => {
 
-    const data =
-      (allData[planet] && allData[planet][category])
-        ? allData[planet][category]
-        : [];
+  const missions = allData.missions;
+
+  const data =
+    (missions[planet] && missions[planet][category])
+      ? missions[planet][category]
+      : [];
 
     missionsData = data;
 
