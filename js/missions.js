@@ -1,3 +1,5 @@
+const API_URL = "https://script.google.com/macros/s/AKfycbwILpIig7-jn_tK7eXJigrwYDjMMutfqtOAWrViRK1zolF5VSFeJZqB_8Ncu26i3fPEfQ/exec";
+
 let missionsData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,31 +41,35 @@ if (pageTitle) {
   if (!planet || !category) return;
 
   const storageKey = `timers_${planet}_${category}`;
-  const file = `data/timers_${planet}_${category}.json`;
 
-  fetch(file)
-    .then(r => r.json())
-.then(data => {
+fetch(API_URL)
+  .then(r => r.json())
+  .then(allData => {
 
-  missionsData = data;
+    const data =
+      (allData[planet] && allData[planet][category])
+        ? allData[planet][category]
+        : [];
 
-      const stored = initMissionStorage(storageKey, data);
+    missionsData = data;
 
-      const showSelectedOnly = document.getElementById("showSelectedOnly");
-showSelectedOnly.checked = getShowSelected(storageKey);
+    const stored = initMissionStorage(storageKey, data);
 
-showSelectedOnly.addEventListener("change", e => {
-  setShowSelected(storageKey, e.target.checked);
-  render(data, storageKey, e.target.checked);
-});
+    const showSelectedOnly = document.getElementById("showSelectedOnly");
+    showSelectedOnly.checked = getShowSelected(storageKey);
 
-      render(data, storageKey, showSelectedOnly.checked);
-
-      setInterval(() => {
-        updateTimers(storageKey);
-      }, 1000);
-
+    showSelectedOnly.addEventListener("change", e => {
+      setShowSelected(storageKey, e.target.checked);
+      render(data, storageKey, e.target.checked);
     });
+
+    render(data, storageKey, showSelectedOnly.checked);
+
+    setInterval(() => {
+      updateTimers(storageKey);
+    }, 1000);
+
+  });
 }
 
 /* ================= RENDER ================= */
