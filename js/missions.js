@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwILpIig7-jn_tK7eXJigrwYDjMMutfqtOAWrViRK1zolF5VSFeJZqB_8Ncu26i3fPEfQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyJxaN0GNy3ZB0J8KyWjGVdRoDuZVgX0EvXhBraB2FBRLcur9QfyTjSoR0GAg2Atii67Q/exec";
 
 let missionsData = [];
 
