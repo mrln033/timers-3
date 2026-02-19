@@ -18,7 +18,7 @@ async function loadDashboard() {
 
   try {
 
-    const API_URL = "https://script.google.com/macros/s/AKfycbyJxaN0GNy3ZB0J8KyWjGVdRoDuZVgX0EvXhBraB2FBRLcur9QfyTjSoR0GAg2Atii67Q/exec";
+    const API_URL = "https://script.google.com/macros/s/AKfycbzMoEkDm3aUyKvZxJOuIo2NGrmaDsNsOr9aFkK6nkDO9UABx9WGM8ECd8ctDl10g8x8uA/exec";
 
 
 const json = await getApiData(API_URL);
