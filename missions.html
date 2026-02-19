@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Missions</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="page-container">
+
+  <h2 id="pageTitle"></h2>
+
+  <div class="top-bar">
+    <a href="index.html" class="back-button">⬅ Retour</a>
+
+    <div class="selection-counter">
+      <span id="counter" class="selection-badge"></span>
+    </div>
+
+    <label class="filter-label">
+      <input type="checkbox" id="showSelectedOnly">
+      Afficher seulement sélectionnés
+    </label>
+  </div>
+
+<div class="card">
+
+<table class="timers-table">
+  <thead>
+    <tr>
+      <th class="col-select">Sél.</th>
+      <th>Nom Mission</th>
+      <th>Actif / Compteur</th>
+      <th>WP à copier</th>
+    </tr>
+  </thead>
+  <tbody id="timersTable"></tbody>
+</table>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/missions.js"></script>
+</body>
+</html>
