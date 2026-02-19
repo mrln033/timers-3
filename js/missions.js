@@ -42,9 +42,8 @@ if (pageTitle) {
 
   const storageKey = `timers_${planet}_${category}`;
 
-fetch(API_URL)
-  .then(r => r.json())
-.then(allData => {
+getApiData(API_URL)
+  .then(allData => {
 
   const missions = allData.missions;
 

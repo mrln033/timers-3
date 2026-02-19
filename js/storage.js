@@ -85,3 +85,31 @@ function countSelectedTimers(storageKey) {
     .length;
 }
 
+/* ================= API CACHE ================= */
+
+const API_CACHE_KEY = "global_api_cache_v1";
+const API_CACHE_DURATION = 60000; // 60 sec
+
+async function getApiData(API_URL) {
+
+  const cached = localStorage.getItem(API_CACHE_KEY);
+
+  if (cached) {
+    const parsed = JSON.parse(cached);
+
+    if (Date.now() - parsed.timestamp < API_CACHE_DURATION) {
+      return parsed.data;
+    }
+  }
+
+  const res = await fetch(API_URL);
+  const json = await res.json();
+
+  localStorage.setItem(API_CACHE_KEY, JSON.stringify({
+    timestamp: Date.now(),
+    data: json
+  }));
+
+  return json;
+}
+
