@@ -1,3 +1,5 @@
+const API_URL = "https://script.google.com/macros/s/AKfycbyd8APwp1AuojSuaetP96Wt7troDtYEDbeiCyD4KTPOey_7Pe1FcS1W_c_J6mVC6P3cLA/exec";
+
 document.addEventListener("DOMContentLoaded", () => {
   loadDashboard();
 });
@@ -17,8 +19,6 @@ async function loadDashboard() {
   await new Promise(resolve => setTimeout(resolve, 50));
 
   try {
-
-const API_URL = "https://script.google.com/macros/s/AKfycbyd8APwp1AuojSuaetP96Wt7troDtYEDbeiCyD4KTPOey_7Pe1FcS1W_c_J6mVC6P3cLA/exec";
 
 const json = await getApiData(API_URL);
 
