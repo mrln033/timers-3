@@ -3,6 +3,8 @@ const webhookURL = "https://discord.com/api/webhooks/1482673609850884137/WGN9KPI
 document.addEventListener("DOMContentLoaded", () => {
 
 const btn = document.getElementById("discord-report-btn");
+if(!btn) return;
+
 const toast = document.getElementById("discord-toast");
 const sendBtn = document.getElementById("send-discord");
 const closeBtn = document.getElementById("close-toast");
@@ -17,40 +19,28 @@ toast.classList.add("hidden");
 
 sendBtn.onclick = async () => {
 
-const avatar = document.getElementById("avatar-name").value.trim();
-const commentaire = document.getElementById("commentaire").value.trim();
+const avatar = document.getElementById("avatar-name").value;
+const commentaire = document.getElementById("commentaire").value;
 
 const message =
 `<@213002815923027969>
 
-📢 Nouvelle demande concernant les missions quotidiennes
+📢 Demande concernant les missions
 
 Avatar IG : ${avatar}
 
 ${commentaire}
 `;
 
-try{
-
 await fetch(webhookURL,{
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-content:message
-})
+headers:{ "Content-Type":"application/json" },
+body:JSON.stringify({ content:message })
 });
 
 toast.classList.add("hidden");
 
-alert("Message envoyé sur Discord 👍");
-
-}catch(e){
-
-alert("Erreur lors de l'envoi Discord");
-
-}
+alert("Message envoyé 👍");
 
 };
 
