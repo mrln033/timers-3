@@ -26,6 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================= OUVRIR / FERMER LE TOAST =================
   if(btnOpen && toast){
     btnOpen.addEventListener("click", () => {
+      // Calculer la position du bouton et placer le toast au-dessus
+      const rect = btnOpen.getBoundingClientRect();
+      toast.style.position = "absolute";
+      toast.style.left = `${rect.left + rect.width / 2 - toast.offsetWidth / 2}px`;
+      toast.style.top = `${rect.top - toast.offsetHeight - 10 + window.scrollY}px`; // 10px marge au-dessus
       toast.classList.remove("hidden");
     });
   }
