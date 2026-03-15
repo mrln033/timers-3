@@ -371,17 +371,17 @@ opacity:0.9;
 }
 
 /* ================== TOAST DISCORD ================= */
-.discord-toast{
-  position: absolute; /* sera calculé dynamiquement en JS */
+.discord-toast {
+  position: absolute;       /* positionnement calculé par JS */
   width: 360px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.25);
   padding: 15px;
-  z-index:1000;
-
-  display: flex;
-  flex-direction: column;
+  z-index: 1000;
+  display: none;            /* caché par défaut */
+  left: 50%;                /* centré horizontalement */
+  transform: translateX(-50%); /* recentrage horizontal exact */
 }
 
 .hidden{
