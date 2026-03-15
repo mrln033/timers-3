@@ -35,9 +35,9 @@ if (pageTitle) {
   pageTitle.textContent = `-= ${planetTitle} - ${category} =-`;
 }
 
-  if (!planet || !category) return;
+  if (!planetCode || !category) return;
 
-  const storageKey = `timers_${planet}_${category}`;
+  const storageKey = `timers_${planetCode}_${category}`;
 
 getApiData(API_URL)
   .then(allData => {
@@ -45,8 +45,8 @@ getApiData(API_URL)
   const missions = allData.missions;
 
   const data =
-    (missions[planet] && missions[planet][category])
-      ? missions[planet][category]
+    (missions[planetCode] && missions[planetCode][category])
+      ? missions[planetCode][category]
       : [];
 
     missionsData = data;
@@ -151,29 +151,29 @@ function render(data, storageKey, showSelected=false) {
     `;
 
     /* COL 2 */
-const col2 = document.createElement("td");
-col2.style.textAlign = "left";
+	const col2 = document.createElement("td");
+	col2.style.textAlign = "left";
 
-const wrapper = document.createElement("div");
-wrapper.className = "name-wrapper";
+	const wrapper = document.createElement("div");
+	wrapper.className = "name-wrapper";
 
-const nameText = document.createElement("span");
-nameText.textContent = m.name;
-wrapper.appendChild(nameText);
+	const nameText = document.createElement("span");
+	nameText.textContent = m.name;
+	wrapper.appendChild(nameText);
 
-// 🛈 Info tooltip si présent
-if (m.info) {
-  const infoIcon = document.createElement("span");
-  infoIcon.className = "info-icon";
-  infoIcon.textContent = " 🛈";
+	// 🛈 Info tooltip si présent
+	if (m.info) {
+		const infoIcon = document.createElement("span");
+		infoIcon.className = "info-icon";
+		infoIcon.textContent = " 🛈";
 
-  const tooltip = document.createElement("span");
-  tooltip.className = "info-tooltip";
-  tooltip.textContent = m.info;
+		const tooltip = document.createElement("span");
+		tooltip.className = "info-tooltip";
+		tooltip.textContent = m.info;
 
-  infoIcon.appendChild(tooltip);
-  wrapper.appendChild(infoIcon);
-}
+		infoIcon.appendChild(tooltip);
+		wrapper.appendChild(infoIcon);
+	}
 
 // Badge actif
 if (isActive) {
