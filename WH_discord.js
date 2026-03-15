@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(btnSend && toast && textarea){
     btnSend.addEventListener("click", async () => {
       const avatarName = inputAvatar ? inputAvatar.value.trim() : "";
-      const messageContent = `@213002815923027969\nNom Avatar : ${avatarName}\n\n${textarea.value}`;
+      const messageContent = `<@213002815923027969>\nNom Avatar : ${avatarName}\n\n${textarea.value}`;
 
       const webhookUrl = "https://discord.com/api/webhooks/1482673609850884137/WGN9KPIBo2bQCkz6jidVQpqXY0QDfpwWXLQuD-5-rVpk0wWOR6tYxLNmNRTPHW_HvYrs";
 
