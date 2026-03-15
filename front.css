@@ -370,46 +370,47 @@ font-size:14px;
 opacity:0.9;
 }
 
-/* TOAST */
-
+/* ================== TOAST DISCORD ================= */
 .discord-toast{
-position:fixed;
-bottom:80px;
-right:20px;
-width:360px;
-background:white;
-border-radius:8px;
-box-shadow:0 4px 14px rgba(0,0,0,0.25);
-padding:15px;
-z-index:1000;
-max-height:80vh;
-overflow:auto;
+  position: fixed;
+  bottom: 20px;          /* toujours en bas */
+  left: 50%;             /* centré horizontalement */
+  transform: translateX(-50%);
+  width: 360px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  padding: 15px;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden{
-display:none;
+  display: none;
 }
 
 .discord-toast textarea{
-width:100%;
-height:170px;
-margin-top:8px;
+  width:100%;
+  height:170px;
+  margin-top:8px;
 }
 
 .discord-toast input{
-width:100%;
-margin-top:8px;
+  width:100%;
+  margin-top:8px;
 }
 
-.discord-toast .toast-info{
-font-size:12px;
-margin-bottom:6px;
-color:#444;
+.toast-info{
+  font-size:12px;
+  margin-bottom:6px;
+  color:#444;
 }
 
-.discord-toast .toast-actions{
-margin-top:10px;
-text-align:right;
+.toast-actions{
+  margin-top:10px;
+  text-align:right;
 }
 
 .dashboard-legend{

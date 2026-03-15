@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if(textarea){
     let text = textarea.value;
 
-    // Remplissage automatique
-    text = text.replace("Planete :", `Planete : ${planet}`);
+    // Planète en MAJUSCULES, catégorie inchangée
+    text = text.replace("Planete :", `Planete : ${planet.toUpperCase()}`);
     text = text.replace("Catégorie :", `Catégorie : ${category}`);
 
     textarea.value = text;
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if(res.ok){
           alert("Message envoyé avec succès !");
           toast.classList.add("hidden");
-          textarea.value = textarea.value; // conserve le texte
           if(inputAvatar) inputAvatar.value = ""; // reset avatar
         } else {
           alert("Erreur lors de l'envoi du message.");
