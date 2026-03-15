@@ -1,4 +1,3 @@
-// WH_discord.js
 document.addEventListener("DOMContentLoaded", () => {
 
   // ================= PARAMÈTRES PLANÈTE / CATÉGORIE =================
@@ -7,16 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const category = params.get("category") || "";
 
   const textarea = document.getElementById("commentaire");
-
   if(textarea){
     let text = textarea.value;
 
-    // Récupérer le nom in-extenso de la planète depuis missions
-    // missions doit être accessible globalement dans missions.js
-    const planetData = window.missions?.[planet]; // Assure que missions est global
-    const planetTitle = planetData?.title || planet; // Nom in-extenso ou fallback code
-
-    text = text.replace("Planete :", `Planete : ${planetTitle}`);
+    // Planète en MAJUSCULES, catégorie inchangée
+    text = text.replace("Planete :", `Planete : ${planet.toUpperCase()}`);
     text = text.replace("Catégorie :", `Catégorie : ${category}`);
 
     textarea.value = text;
@@ -32,14 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================= OUVRIR / FERMER LE TOAST =================
   if(btnOpen && toast){
     btnOpen.addEventListener("click", () => {
+      // Calculer la position du bouton et placer le toast au-dessus
       const rect = btnOpen.getBoundingClientRect();
-
-      // Centrer horizontalement et placer le toast au-dessus du bouton
       toast.style.position = "absolute";
-      toast.style.left = "50%";
-      toast.style.transform = "translateX(-50%)";
-      toast.style.top = `${window.scrollY + rect.top - toast.offsetHeight - 10}px`; // 10px marge
-
+      toast.style.left = `${rect.left + rect.width / 2 - toast.offsetWidth / 2}px`;
+      toast.style.top = `${rect.top - toast.offsetHeight - 10 + window.scrollY}px`; // 10px marge au-dessus
       toast.classList.remove("hidden");
     });
   }
