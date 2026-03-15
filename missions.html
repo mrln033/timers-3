@@ -38,8 +38,41 @@
   <tbody id="timersTable"></tbody>
 </table>
 </div>
+<button id="discord-report-btn" class="discord-btn">
+💬 Signaler une mission
+</button>
 
+<div id="discord-toast" class="discord-toast hidden">
+
+<p class="toast-info">
+Pour une Modification, indiquez le nom de la mission et les valeurs à modifier.
+Pour un Ajout, indiquez le maximum d'infos afin que la vérification et l'ajout soient plus rapide.
+N'hésitez pas à laisser un commentaire.
+Votre nom complet d'avatar IG me permettra de vous contacter si besoin.
+Merciiiiiii !!
+</p>
+
+<input id="avatar-name" placeholder="Nom complet d'Avatar IG">
+
+<textarea id="commentaire">
+Planete :
+Catégorie :
+Nom Mission :
+Durée :
+WayPoint PNJ/Terminal :
+Reward :
+
+Infos/Commentaire :
+</textarea>
+
+<div class="toast-actions">
+<button id="send-discord">Envoyer</button>
+<button id="close-toast">Annuler</button>
+</div>
+
+</div>
 <script src="storage.js"></script>
 <script src="missions.js"></script>
+<script src="WH_discord.js"></script>
 </body>
 </html>
