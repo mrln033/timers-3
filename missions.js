@@ -29,9 +29,6 @@ function loadMissions() {
 
 if (pageTitle) {
 
-  const formattedPlanet =
-    planet.charAt(0).toUpperCase() + planet.slice(1);
-
   const formattedCategory =
     category.charAt(0).toUpperCase() + category.slice(1);
 
