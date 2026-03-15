@@ -1,47 +1,70 @@
-const webhookURL = "https://discord.com/api/webhooks/1482673609850884137/WGN9KPIBo2bQCkz6jidVQpqXY0QDfpwWXLQuD-5-rVpk0wWOR6tYxLNmNRTPHW_HvYrs";
-
 document.addEventListener("DOMContentLoaded", () => {
 
-const btn = document.getElementById("discord-report-btn");
-if(!btn) return;
+  // ================= PARAMÈTRES PLANÈTE / CATÉGORIE =================
+  const params = new URLSearchParams(window.location.search);
+  const planet = params.get("planet") || "";
+  const category = params.get("category") || "";
 
-const toast = document.getElementById("discord-toast");
-const sendBtn = document.getElementById("send-discord");
-const closeBtn = document.getElementById("close-toast");
+  const textarea = document.getElementById("commentaire");
+  if(textarea){
+    let text = textarea.value;
 
-btn.onclick = () => {
-toast.classList.remove("hidden");
-};
+    // Remplissage automatique
+    text = text.replace("Planete :", `Planete : ${planet}`);
+    text = text.replace("Catégorie :", `Catégorie : ${category}`);
 
-closeBtn.onclick = () => {
-toast.classList.add("hidden");
-};
+    textarea.value = text;
+  }
 
-sendBtn.onclick = async () => {
+  // ================= ÉLÉMENTS DU TOAST =================
+  const toast = document.getElementById("discord-toast");
+  const btnOpen = document.getElementById("discord-report-btn");
+  const btnClose = document.getElementById("close-toast");
+  const btnSend = document.getElementById("send-discord");
+  const inputAvatar = document.getElementById("avatar-name");
 
-const avatar = document.getElementById("avatar-name").value;
-const commentaire = document.getElementById("commentaire").value;
+  // ================= OUVRIR / FERMER LE TOAST =================
+  if(btnOpen && toast){
+    btnOpen.addEventListener("click", () => {
+      toast.classList.remove("hidden");
+    });
+  }
 
-const message =
-`<@213002815923027969>
+  if(btnClose && toast){
+    btnClose.addEventListener("click", () => {
+      toast.classList.add("hidden");
+    });
+  }
 
-📢 Demande concernant les missions
+  // ================= ENVOI DISCORD =================
+  if(btnSend && toast && textarea){
+    btnSend.addEventListener("click", async () => {
+      const avatarName = inputAvatar ? inputAvatar.value.trim() : "";
+      const messageContent = `@213002815923027969\nNom Avatar : ${avatarName}\n\n${textarea.value}`;
 
-Avatar IG : ${avatar}
+      const webhookUrl = "https://discord.com/api/webhooks/1482673609850884137/WGN9KPIBo2bQCkz6jidVQpqXY0QDfpwWXLQuD-5-rVpk0wWOR6tYxLNmNRTPHW_HvYrs";
 
-${commentaire}
-`;
+      try {
+        const res = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content: messageContent })
+        });
 
-await fetch(webhookURL,{
-method:"POST",
-headers:{ "Content-Type":"application/json" },
-body:JSON.stringify({ content:message })
-});
+        if(res.ok){
+          alert("Message envoyé avec succès !");
+          toast.classList.add("hidden");
+          textarea.value = textarea.value; // conserve le texte
+          if(inputAvatar) inputAvatar.value = ""; // reset avatar
+        } else {
+          alert("Erreur lors de l'envoi du message.");
+        }
 
-toast.classList.add("hidden");
-
-alert("Message envoyé 👍");
-
-};
+      } catch(e){
+        console.error(e);
+        alert("Impossible d'envoyer le message. Vérifiez votre connexion.");
+      }
+    });
+  }
 
 });
