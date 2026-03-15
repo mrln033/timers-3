@@ -10,8 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let text = textarea.value;
 
     // Planète en MAJUSCULES, catégorie inchangée
-    text = text.replace("Planete :", `Planete : ${planet.toUpperCase()}`);
-    text = text.replace("Catégorie :", `Catégorie : ${category}`);
+    const planetData = missions[planet]; // tu dois avoir accès à l'objet missions
+	const planetTitle = planetData?.title?.toUpperCase() || planet.toUpperCase();
+
+	text = text.replace("Planete :", `Planete : ${planetTitle}`);
+		text = text.replace("Catégorie :", `Catégorie : ${category}`);
 
     textarea.value = text;
   }

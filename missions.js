@@ -28,14 +28,12 @@ const pageTitle = document.getElementById("pageTitle");
 
 if (pageTitle) {
 
-  const formattedPlanet =
-    planet.charAt(0).toUpperCase() + planet.slice(1);
+  // Récupérer le titre depuis l'objet planète
+  const planetData = missions[planet]; // ton objet récupéré depuis l'API
+  const planetTitle = planetData?.title || planet; // fallback au code si title absent
+  const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
-  const formattedCategory =
-    category.charAt(0).toUpperCase() + category.slice(1);
-
-  pageTitle.textContent =
-    `-= ${formattedPlanet} - ${formattedCategory} =-`;
+  pageTitle.textContent = `-= ${planetTitle} - ${formattedCategory} =-`;
 }
 
   if (!planet || !category) return;
