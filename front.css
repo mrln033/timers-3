@@ -415,7 +415,8 @@ text-align:right;
 .dashboard-legend{
   width:100%;
   text-align:center;
-  margin-top:12px;
+  margin-top:14px;
   font-size:14px;
+  opacity:0.85;
 }
 
