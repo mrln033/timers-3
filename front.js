@@ -75,8 +75,7 @@ const json = await getApiData(API_URL);
 
         const btn = document.createElement("a");
         btn.className = "category-button";
-        btn.href =
-          `missions.html?planet=${planet.planet}&category=${category}`;
+        btn.href = `missions.html?planet=${planet.planet}&title=${encodeURIComponent(planet.title)}&category=${category}`;
 
         btn.innerHTML = `
           <span class="badge-left">

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const textarea = document.getElementById("commentaire");
   if(textarea){
     let text = textarea.value;
-    text = text.replace("Planete :", `Planete : ${planet}`);
+    text = text.replace("Planete :", `Planete : ${planetTitle}`);
     text = text.replace("Catégorie :", `Catégorie : ${category}`);
     textarea.value = text;
   }

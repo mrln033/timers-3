@@ -21,10 +21,11 @@ function formatTime(ms) {
 function loadMissions() {
 
   const params = new URLSearchParams(window.location.search);
-  const planet = params.get("planet");
-  const category = params.get("category");
+  const planetCode = params.get("planet") || "";
+  const planetTitle = params.get("title") || planetCode; // fallback si absent
+  const category = params.get("category") || "";
 
-const pageTitle = document.getElementById("pageTitle");
+  const pageTitle = document.getElementById("pageTitle");
 
 if (pageTitle) {
 
@@ -34,8 +35,7 @@ if (pageTitle) {
   const formattedCategory =
     category.charAt(0).toUpperCase() + category.slice(1);
 
-  pageTitle.textContent =
-    `-= ${formattedPlanet} - ${formattedCategory} =-`;
+  pageTitle.textContent = `-= ${planetTitle} - ${category} =-`;
 }
 
   if (!planet || !category) return;
