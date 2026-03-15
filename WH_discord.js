@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ================= PARAMÈTRES PLANÈTE / CATÉGORIE =================
   const params = new URLSearchParams(window.location.search);
-  const planet = params.get("planet") || "";
+  const planetTitle = params.get("title") || "";
   const category = params.get("category") || "";
 
   const textarea = document.getElementById("commentaire");
